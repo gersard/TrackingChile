@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cl.gersard.trackingchile.uii.adapter.fragment.TrackingListFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -25,10 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        //asigno el fragmento
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.main_container, new TrackingListFragment()).commit();
+        }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    @Override    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
