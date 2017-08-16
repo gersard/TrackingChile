@@ -1,6 +1,5 @@
 package cl.gersard.trackingchile.uii.adapter.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,13 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import cl.gersard.trackingchile.R;
 import cl.gersard.trackingchile.domain.Tracking;
 import cl.gersard.trackingchile.uii.adapter.ItemOffsetDecoration;
 import cl.gersard.trackingchile.uii.adapter.TrackingListAdapter;
-import retrofit2.Callback;
 
 /**
  * Created by criga on 15/08/2017.
@@ -26,9 +26,11 @@ import retrofit2.Callback;
 public class TrackingListFragment extends Fragment /*implements Callback<TopArtistResponse>*/ {
 
     public static final int NUM_COLUMN = 2;
+    @BindView(R.id.tracking_list)
+    RecyclerView mTrackingList;
+    Unbinder unbinder;
 
     //m = memberClass
-    private RecyclerView mTrackingList;
     private TrackingListAdapter adapter;
     //private TrackingResponse call;
     //private Response<TrackingResponse> response;
@@ -44,10 +46,10 @@ public class TrackingListFragment extends Fragment /*implements Callback<TopArti
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        View root = inflater.inflate(R.layout.fragment_tracking_list,container,false);
+        View root = inflater.inflate(R.layout.fragment_tracking_list, container, false);
+        unbinder = ButterKnife.bind(this, root);
 
         //A la vista inflada busca otra vista
-        mTrackingList = (RecyclerView) root.findViewById(R.id.tracking_list);
 
         setupTrackingList();
         setTrackingContent();
@@ -55,18 +57,24 @@ public class TrackingListFragment extends Fragment /*implements Callback<TopArti
     }
 
     private void setupTrackingList() {
-        mTrackingList.setLayoutManager(new GridLayoutManager(getActivity(),NUM_COLUMN));
+        mTrackingList.setLayoutManager(new GridLayoutManager(getActivity(), NUM_COLUMN));
         mTrackingList.setAdapter(adapter);
-        mTrackingList.addItemDecoration(new ItemOffsetDecoration(getContext(),R.integer.offset));
+        mTrackingList.addItemDecoration(new ItemOffsetDecoration(getContext(), R.integer.offset));
     }
 
     private void setTrackingContent() {
         ArrayList<Tracking> trackings = new ArrayList<>();
 
-        for(int i = 0;i < 10; i++){
-            trackings.add(new Tracking("Tracking" + i,"4564ALS0091","25/08/2015"));
+        for (int i = 0; i < 10; i++) {
+            trackings.add(new Tracking("Tracking" + i, "4564ALS0091", "25/08/2015"));
         }
 
         adapter.addTrackings(trackings);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

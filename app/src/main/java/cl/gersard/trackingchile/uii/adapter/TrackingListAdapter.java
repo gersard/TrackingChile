@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cl.gersard.trackingchile.R;
 import cl.gersard.trackingchile.domain.Tracking;
 
@@ -33,7 +33,7 @@ public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapte
     @Override
     public TrackingListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
-                .inflate(R.layout.item_tracking_list,parent,false);
+                .inflate(R.layout.item_tracking_list, parent, false);
 
         return new TrackingListViewHolder(itemView);
     }
@@ -50,8 +50,8 @@ public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapte
         return trackings.size();
     }
 
-    public void addTrackings(@NonNull ArrayList<Tracking> trackings){
-        if(trackings == null){
+    public void addTrackings(@NonNull ArrayList<Tracking> trackings) {
+        if (trackings == null) {
             throw new NullPointerException("Tracking no puede ser un array nulo");
         }
 
@@ -61,20 +61,21 @@ public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapte
 
     public class TrackingListViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title_name;
-        TextView code;
-        TextView date;
+        @BindView(R.id.txt_name)
+        TextView txtName;
+        @BindView(R.id.txt_code)
+        TextView txtCode;
+        @BindView(R.id.txt_date)
+        TextView txtDate;
+
 
         public TrackingListViewHolder(View itemView) {
             super(itemView);
-
-            title_name = (TextView) itemView.findViewById(R.id.txt_name);
-            code = (TextView) itemView.findViewById(R.id.txt_code);
-            date = (TextView) itemView.findViewById(R.id.txt_date);
+            ButterKnife.bind(this,itemView);
         }
 
-        public void setTrackingName(String name){
-            title_name.setText(name);
+        public void setTrackingName(String name) {
+            txtName.setText(name);
         }
     }
 }
