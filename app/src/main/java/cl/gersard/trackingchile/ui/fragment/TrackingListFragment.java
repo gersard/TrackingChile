@@ -1,4 +1,4 @@
-package cl.gersard.trackingchile.uii.adapter.fragment;
+package cl.gersard.trackingchile.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cl.gersard.trackingchile.R;
 import cl.gersard.trackingchile.domain.Tracking;
-import cl.gersard.trackingchile.uii.adapter.ItemOffsetDecoration;
-import cl.gersard.trackingchile.uii.adapter.TrackingListAdapter;
+import cl.gersard.trackingchile.ui.ItemOffsetDecoration;
+import cl.gersard.trackingchile.ui.adapter.TrackingListAdapter;
 
 /**
  * Created by criga on 15/08/2017.

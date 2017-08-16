@@ -1,4 +1,4 @@
-package cl.gersard.trackingchile.uii.adapter;
+package cl.gersard.trackingchile.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
