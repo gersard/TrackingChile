@@ -1,8 +1,10 @@
 package cl.gersard.trackingchile.repository;
 
-import okhttp3.ResponseBody;
+import cl.gersard.trackingchile.domain.Track;
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -11,6 +13,8 @@ import retrofit2.http.Query;
 
 interface IApiService {
 
-    @GET()
-    Callback<ResponseBody> consultarSeguimiento ();
+
+    @GET("{codigo}")
+    Call<Track> consultarSeguimiento(@Path("codigo") String codigo);
+
 }

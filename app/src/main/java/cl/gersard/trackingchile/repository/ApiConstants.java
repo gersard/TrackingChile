@@ -6,4 +6,8 @@ package cl.gersard.trackingchile.repository;
 
 public class ApiConstants {
     public static final String URL_BASE = "http://api-correos.herokuapp.com/";
+
+
+    public static final int RESPONSE_OK = 200;
+    public static final int RESPONSE_ERROR = 10;
 }

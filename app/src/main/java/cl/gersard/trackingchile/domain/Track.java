@@ -4,9 +4,14 @@ package cl.gersard.trackingchile.domain;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
-public class Track {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+@SuppressWarnings("unused")
+public class Track extends RealmObject {
+
+    @PrimaryKey
+    private int idTrack;
     @SerializedName("datosgenerales")
     private Datosgenerales mDatosgenerales;
     @SerializedName("registros")
@@ -20,8 +25,12 @@ public class Track {
         return mRegistros;
     }
 
-    public class Registro {
 
+
+    public class Registro extends RealmObject {
+
+        @PrimaryKey
+        private int idRegistro;
         @SerializedName("estado")
         private String mEstado;
         @SerializedName("fecha")
@@ -43,8 +52,10 @@ public class Track {
 
     }
 
-    public class Datosgenerales {
+    public class Datosgenerales extends RealmObject {
 
+        @PrimaryKey
+        private int idDatosGenerales;
         @SerializedName("Entregado_a")
         private String mEntregadoA;
         @SerializedName("Envio")
