@@ -7,7 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
+
 import cl.gersard.trackingchile.R;
+import cl.gersard.trackingchile.domain.Track;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +21,7 @@ public class DetalleFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
 
-    private String mParam1;
+    private String jsonTrack;
 
 
     public DetalleFragment() {
@@ -38,7 +41,8 @@ public class DetalleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            jsonTrack = getArguments().getString(ARG_PARAM1);
+
         }
     }
 

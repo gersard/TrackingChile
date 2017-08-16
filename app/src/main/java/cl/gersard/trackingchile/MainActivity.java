@@ -18,6 +18,7 @@ import butterknife.OnClick;
 import cl.gersard.trackingchile.domain.Track;
 import cl.gersard.trackingchile.repository.ApiConstants;
 import cl.gersard.trackingchile.repository.FuncionesRest;
+import cl.gersard.trackingchile.ui.fragment.DetalleFragment;
 import cl.gersard.trackingchile.ui.fragment.TrackingListFragment;
 import cl.gersard.trackingchile.util.RunnableArgs;
 
@@ -50,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         //asigno el fragmento
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new TrackingListFragment()).commit();
+                    .add(R.id.main_container, new TrackingListFragment()).commitAllowingStateLoss();
+
+
         }
     }
 
@@ -88,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "LA LLAMA ESTUVO OK", Toast.LENGTH_SHORT).show();
                     //TODO OPTION JSON CON GSON, RECIBES ELA CLASE TRACK Y LA PASAS A JSON, LUEGO CREAS EL BUNDLE Y LO PONES COM PUT STRNIG, LUEGO CUANDO CAMBIAS DE FRAGMENT, LE PASAS EL ARGUMENTO
                     //TODO EN L OTRO FRAGMENTO, TOMARIAS EL STRING Y CON GSON LO TRANSFORMAR A LA CLASE TRACK
-                    //TODO OPTION REALM, TOMAS EL ID, Y LO PASAS COMO ARGUMENTO, EN EL OTRO FRAGMENTO TOAMS EL ID Y HACSE UNA QUERY PARA VBUSCAR EL TRACK CON ESE ID
+
 
                 } else {
                     //TODO MOSTRAR MENSAJE DE ERROR

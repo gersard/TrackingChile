@@ -26,6 +26,7 @@ public class FuncionesRest {
                 //TODO AÑADIR A REALM
                 //TODO OPCION JSON CON GSON . RETORNAR EN EL BLOCK, LA CLASE TRACKING
                 //TODO OPTION REALM, GUARDAS EL TRACK EN BD, TOMAS EL ID Y LO PASAS EN EL BLOCK
+
                 if (tracking.getRegistros() != null){
                     if (block != null){
                         block.setTrack(tracking);
