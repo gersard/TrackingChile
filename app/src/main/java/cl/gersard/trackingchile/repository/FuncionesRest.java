@@ -23,9 +23,7 @@ public class FuncionesRest {
             public void onResponse(Call<Track> call, Response<Track> response) {
                 Track tracking = response.body();
                 Log.d("RESPUESTA",tracking.getRegistros().get(0).getEstado());
-                //TODO AÑADIR A REALM
                 //TODO OPCION JSON CON GSON . RETORNAR EN EL BLOCK, LA CLASE TRACKING
-                //TODO OPTION REALM, GUARDAS EL TRACK EN BD, TOMAS EL ID Y LO PASAS EN EL BLOCK
 
                 if (tracking.getRegistros() != null){
                     if (block != null){

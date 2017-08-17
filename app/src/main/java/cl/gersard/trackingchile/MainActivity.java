@@ -18,32 +18,32 @@ import butterknife.OnClick;
 import cl.gersard.trackingchile.domain.Track;
 import cl.gersard.trackingchile.repository.ApiConstants;
 import cl.gersard.trackingchile.repository.FuncionesRest;
+import cl.gersard.trackingchile.ui.fragment.AgregarTrackFragment;
 import cl.gersard.trackingchile.ui.fragment.DetalleFragment;
 import cl.gersard.trackingchile.ui.fragment.TrackingListFragment;
 import cl.gersard.trackingchile.util.RunnableArgs;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.edit_codigo_search)
-    EditText mEditCodigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-//
-//
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, AgregarTrackFragment.newInstance()).commitAllowingStateLoss();
+            }
+        });
+
+
 
 
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //asigno el fragmento
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new TrackingListFragment()).commitAllowingStateLoss();
+                    .replace(R.id.main_container, new TrackingListFragment()).commitAllowingStateLoss();
 
 
         }
@@ -79,29 +79,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.img_btn_search)
-    public void onViewClicked() {
 
-
-        RunnableArgs runnableArgs = new RunnableArgs() {
-            @Override
-            public void run() {
-                if (this.getResponse() == ApiConstants.RESPONSE_OK) {
-                    //TODO ENVIAR AL DETALLE FRAGMENT
-                    Toast.makeText(MainActivity.this, "LA LLAMA ESTUVO OK", Toast.LENGTH_SHORT).show();
-                    //TODO OPTION JSON CON GSON, RECIBES ELA CLASE TRACK Y LA PASAS A JSON, LUEGO CREAS EL BUNDLE Y LO PONES COM PUT STRNIG, LUEGO CUANDO CAMBIAS DE FRAGMENT, LE PASAS EL ARGUMENTO
-                    //TODO EN L OTRO FRAGMENTO, TOMARIAS EL STRING Y CON GSON LO TRANSFORMAR A LA CLASE TRACK
-
-
-                } else {
-                    //TODO MOSTRAR MENSAJE DE ERROR
-                    Toast.makeText(MainActivity.this, "LA LLAMA FALLO", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-
-
-        FuncionesRest.consultarSeguimiento(mEditCodigo.getText().toString().trim(), runnableArgs);
-    }
 }
