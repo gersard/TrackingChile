@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_container, AgregarTrackFragment.newInstance()).commitAllowingStateLoss();
+                        .replace(R.id.main_container, AgregarTrackFragment.newInstance())
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         //asigno el fragmento
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_container, new TrackingListFragment()).commitAllowingStateLoss();
+                    .replace(R.id.main_container, new TrackingListFragment())
+                    .commitAllowingStateLoss();
 
 
         }
