@@ -72,6 +72,8 @@ public class AgregarTrackFragment extends Fragment {
                         public void execute(Realm realm) {
                             Track track = getTrack();
                             track.setIdTrack();
+                            track.setCodigoSeguimiento(mEditCodigo.getText().toString().trim());
+                            track.setDescripcion(mEditDescripcion.getText().toString());
                             for (Registro registro : track.getRegistros()) {
                                 registro.setIdRegistro();
                             }
