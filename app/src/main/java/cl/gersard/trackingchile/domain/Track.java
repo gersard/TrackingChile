@@ -5,8 +5,10 @@ import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 import cl.gersard.trackingchile.MyApplication;
+import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.RealmResults;
 import io.realm.annotations.PrimaryKey;
 
 @SuppressWarnings("unused")
@@ -31,6 +33,11 @@ public class Track extends RealmObject {
 
     public void setIdTrack(){
         idTrack = MyApplication.idTrack.getAndIncrement();
+    }
+
+    public static RealmResults<Track> getTracks(){
+        Realm realm = Realm.getDefaultInstance();
+        return realm.where(Track.class).findAll();
     }
 
 }

@@ -13,7 +13,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import cl.gersard.trackingchile.MainActivity;
 import cl.gersard.trackingchile.R;
 import cl.gersard.trackingchile.domain.Registro;
 import cl.gersard.trackingchile.domain.Track;
