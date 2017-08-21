@@ -22,6 +22,8 @@ public class Track extends RealmObject {
     private Datosgenerales mDatosgenerales;
     @SerializedName("registros")
     private RealmList<Registro> mRegistros;
+    private String codigoSeguimiento;
+    private String descripcion;
 
     public Datosgenerales getDatosgenerales() {
         return mDatosgenerales;
@@ -29,6 +31,22 @@ public class Track extends RealmObject {
 
     public RealmList<Registro> getRegistros() {
         return mRegistros;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigoSeguimiento() {
+        return codigoSeguimiento;
+    }
+
+    public void setCodigoSeguimiento(String codigoSeguimiento) {
+        this.codigoSeguimiento = codigoSeguimiento;
     }
 
     public void setIdTrack(){

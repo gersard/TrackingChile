@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cl.gersard.trackingchile.R;
-import cl.gersard.trackingchile.domain.Tracking;
+import cl.gersard.trackingchile.domain.Track;
 import cl.gersard.trackingchile.ui.ItemOffsetDecoration;
 import cl.gersard.trackingchile.ui.adapter.TrackingListAdapter;
 
@@ -63,13 +63,8 @@ public class TrackingListFragment extends Fragment /*implements Callback<TopArti
     }
 
     private void setTrackingContent() {
-        ArrayList<Tracking> trackings = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            trackings.add(new Tracking("Tracking" + i, "4564ALS0091", "25/08/2015"));
-        }
-
-        adapter.addTrackings(trackings);
+        adapter.addTrackings(Track.getTracks());
     }
 
     @Override

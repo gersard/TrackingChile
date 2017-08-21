@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cl.gersard.trackingchile.R;
-import cl.gersard.trackingchile.domain.Tracking;
+import cl.gersard.trackingchile.domain.Registro;
+import cl.gersard.trackingchile.domain.Track;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 /**
  * Created by criga on 15/08/2017.
@@ -21,13 +22,13 @@ import cl.gersard.trackingchile.domain.Tracking;
 
 public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapter.TrackingListViewHolder> {
 
-    ArrayList<Tracking> trackings;
+    RealmList<Track> mListTrack;
     Context context;
 
     public TrackingListAdapter(Context context) {
         this.context = context;
         //para evitar null pointer exception
-        this.trackings = new ArrayList<>();
+        mListTrack = new RealmList<>();
     }
 
     @Override
@@ -40,22 +41,25 @@ public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapte
 
     @Override
     public void onBindViewHolder(TrackingListViewHolder holder, int position) {
-        Tracking currentTracking = trackings.get(position);
+        Track currentTracking = mListTrack.get(position);
 
-        holder.setTrackingName(currentTracking.getName());
+        holder.setTrackingName(currentTracking.getDescripcion());
+        holder.txtCode.setText(currentTracking.getCodigoSeguimiento());
+        holder.txtDate.setText(currentTracking.getRegistros().get(0).getFecha() + " - " +
+                currentTracking.getRegistros().get(0).getEstado() + ", " +
+                currentTracking.getRegistros().get(0).getLugar());
     }
 
     @Override
     public int getItemCount() {
-        return trackings.size();
+        return mListTrack.size();
     }
 
-    public void addTrackings(@NonNull ArrayList<Tracking> trackings) {
+    public void addTrackings(@NonNull RealmResults<Track> trackings) {
         if (trackings == null) {
             throw new NullPointerException("Tracking no puede ser un array nulo");
         }
-
-        this.trackings.addAll(trackings);
+        this.mListTrack.addAll(trackings);
         notifyDataSetChanged();
     }
 
@@ -71,7 +75,7 @@ public class TrackingListAdapter extends RecyclerView.Adapter<TrackingListAdapte
 
         public TrackingListViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void setTrackingName(String name) {
